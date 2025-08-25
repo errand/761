@@ -79,6 +79,9 @@ class HeadlessWPSecurity {
      * Add headers to REST API responses
      */
     public function add_rest_api_headers($response) {
+        if ( ! ( $response instanceof WP_REST_Response ) ) {
+            return $response;
+        }
         $response->header('X-Robots-Tag', 'noindex, nofollow');
         return $response;
     }
